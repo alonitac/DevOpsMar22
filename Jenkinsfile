@@ -28,7 +28,6 @@ pipeline {
       }
       post {
           always {
-              // Archive unit tests for the future
               junit allowEmptyResults: true, testResults: 'results.xml'
           }
       }
