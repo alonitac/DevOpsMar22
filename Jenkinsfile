@@ -8,13 +8,6 @@ pipeline {
             echo 'building...'
           }
         }
-
-        stage('Build 2') {
-          steps {
-            error 'ff'
-          }
-        }
-
       }
     }
 
