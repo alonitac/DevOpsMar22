@@ -8,8 +8,9 @@ pipeline {
             }
         }
         stage('Test') {
-            when { changeRequest() }
+            when { allOf { changeRequest() ; } }
             steps {
+                sh 'printenv'
                 sh '''
                 pip3 install -r simple_webserver/requirements.txt
                 PYTHONPATH=. python3 -m pytest --junitxml results.xml simple_webserver/tests
