@@ -16,7 +16,7 @@ pipeline {
         echo 'testing...'
         sh 'pip3 install -r simple_webserver/requirements.txt'
         sh '''
-        PYTHONPATH=. python -m pytest --junitxml results.xml simple_webserver/tests
+        PYTHONPATH=. python3 -m pytest --junitxml results.xml simple_webserver/tests
         '''
       }
       post {
