@@ -8,7 +8,7 @@ pipeline {
             }
         }
         stage('Test') {
-            when { allOf { changeRequest() ; } }
+            when { changeRequest target: 'dev' }
             steps {
                 sh 'printenv'
                 sh '''
