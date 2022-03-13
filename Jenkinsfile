@@ -8,8 +8,12 @@ pipeline {
             }
         }
         stage('Test') {
+            when { changeRequest() }
             steps {
-                echo 'testing...'
+                sh '''
+                pip install -r simple_webserver/requirements.txt
+                PYTHONPATH=. python3 -m pytest --junitxml results.xml simple_webserver/tests
+                '''
             }
         }
         stage('Deploy') {
