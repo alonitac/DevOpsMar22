@@ -13,5 +13,5 @@ class TestFlaskWebServer(unittest.TestCase):
 
     def test_hello(self):
         results = hello('Dan')
-        self.assertEqual(results, 'Hello , Dan!')
+        self.assertEqual(results, 'Hello, Dan!')
 
