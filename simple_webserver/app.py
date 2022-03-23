@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask, abort
 import os
 import signal
 import time
@@ -6,6 +6,8 @@ import sys
 
 
 app = Flask(__name__)
+
+t = time.time()
 
 
 @app.route("/")
@@ -16,6 +18,14 @@ def hello_world():
 @app.route("/<name>")
 def hello(name):
     return f"Hello, {name}!"
+
+
+@app.route("/healthz")
+def healthy():
+    if time.time() - t > 120:
+        abort(400, 'Record not found')
+        # raise RuntimeError('not ok')
+    return "ok"
 
 
 def signal_handler(sig, frame):

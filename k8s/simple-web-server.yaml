@@ -5,7 +5,7 @@ metadata:
   labels:
     app: simple-web-server
 spec:
-  replicas: 5
+  replicas: 1
   selector:
     matchLabels:
       app: simple-web-server
@@ -14,10 +14,10 @@ spec:
       labels:
         app: simple-web-server
     spec:
-      terminationGracePeriodSeconds: 60
+      terminationGracePeriodSeconds: 30
       containers:
         - name: simple-web-server
-          image: public.ecr.aws/r7m7o9d4/flask-app-mar22:0.0.1
+          image: public.ecr.aws/r7m7o9d4/flask-app-mar22:0.0.2
 ---
 apiVersion: v1
 kind: Service
