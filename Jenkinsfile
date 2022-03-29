@@ -6,6 +6,11 @@ pipeline {
             steps {
                 echo 'building...'
             }
+            post {
+                 always {
+                     jiraSendBuildInfo site: 'exit-zero.atlassian.net'
+                 }
+             }
         }
         stage('Test') {
             when { changeRequest() }
