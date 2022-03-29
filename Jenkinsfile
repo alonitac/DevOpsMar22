@@ -7,7 +7,7 @@ pipeline {
         stage ('Create venv') {
             steps {
                 sh '''
-                mkdir /venv
+                mkdir ./venv
                 python3 -m venv ./venv
                 source ./venv/bin/activate
                 '''
