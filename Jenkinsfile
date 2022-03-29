@@ -25,6 +25,11 @@ pipeline {
             steps {
                 echo 'deploying...'
             }
+            post {
+                 always {
+                     jiraSendDeploymentInfo site: 'exit-zero.atlassian.net', environmentId: 'east-us-1', environmentName: 'eastus', environmentType: 'prod'
+                 }
+             }
         }
     }
 }
