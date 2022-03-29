@@ -65,6 +65,18 @@ pipeline {
             }
         }
 
+        stage ('Push image to Artifactory') {
+            steps {
+                rtDockerPush(
+                    serverId: "artifactory-project",
+                    image: ARTIFACTORY_DOCKER_REGISTRY + '/python:latest',
+                    targetRepo: 'docker-local',
+                    // Attach custom properties to the published artifacts:
+                    properties: 'project-name=docker1;status=stable'
+                )
+            }
+        }
+
         stage ('Publish build info') {
             steps {
                 rtPublishBuildInfo (
