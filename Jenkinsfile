@@ -57,7 +57,7 @@ pipeline {
                         "files": [
                             {
                                 "pattern": "package_demo/dist/",
-                                "target": "pypi-virtual/"
+                                "target": "default-pypi/"
                             }
                         ]
                     }'''
