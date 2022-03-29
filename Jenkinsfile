@@ -69,7 +69,7 @@ pipeline {
             steps {
                 rtDockerPush(
                     serverId: "artifactory-project",
-                    image: ARTIFACTORY_DOCKER_REGISTRY + '/python:latest',
+                    image: 'python:latest',
                     targetRepo: 'docker-local',
                     // Attach custom properties to the published artifacts:
                     properties: 'project-name=docker1;status=stable'
