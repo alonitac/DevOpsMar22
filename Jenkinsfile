@@ -8,7 +8,7 @@ pipeline {
             }
             post {
                  always {
-                     jiraSendBuildInfo site: 'exit-zero.atlassian.net'
+                     jiraSendBuildInfo()
                  }
              }
         }
@@ -27,7 +27,7 @@ pipeline {
             }
             post {
                  always {
-                     jiraSendDeploymentInfo site: 'exit-zero.atlassian.net', environmentId: 'east-us-1', environmentName: 'eastus', environmentType: 'production'
+                     jiraSendDeploymentInfo environmentId: 'east-us-1', environmentName: 'eastus', environmentType: 'production'
                  }
              }
         }
