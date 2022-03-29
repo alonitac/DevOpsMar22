@@ -24,7 +24,7 @@ pipeline {
         stage ('Pip install') {
             steps {
                 rtPipInstall (
-                    resolverId: "pip-resolver"
+                    resolverId: "pip-resolver",
                     args: "-r python-example/requirements.txt"
                 )
             }
