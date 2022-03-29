@@ -1,6 +1,8 @@
 pipeline {
     agent any
-
+    environment {
+        PATH = "/Users/myUser/venv-example/bin:$PATH" // Add pip virtual-environment's path to PATH
+    }
     stages {
 
         stage ('Artifactory Configuration') {
