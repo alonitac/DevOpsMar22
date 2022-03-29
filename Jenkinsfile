@@ -23,11 +23,6 @@ pipeline {
             steps {
                 echo 'building...'
             }
-            post {
-                 always {
-                     jiraSendBuildInfo()
-                 }
-             }
         }
         stage('Test') {
             when { changeRequest() }
@@ -42,11 +37,6 @@ pipeline {
             steps {
                 echo 'deploying...'
             }
-            post {
-                 always {
-                     jiraSendDeploymentInfo environmentId: 'east-us-1', environmentName: 'eastus', environmentType: 'production'
-                 }
-             }
         }
     }
 }
