@@ -25,7 +25,7 @@ pipeline {
                 rtPipResolver (
                     id: "pip-resolver",
                     serverId: "artifactory-project",
-                    repo: "default-pypi-remote-cache/"
+                    repo: "default-pypi/"
                 )
             }
         }
