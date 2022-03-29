@@ -25,7 +25,7 @@ pipeline {
                 rtPipResolver (
                     id: "pip-resolver",
                     serverId: "artifactory-project",
-                    repo: "pypi-virtual"
+                    repo: "default-pypi"
                 )
             }
         }
