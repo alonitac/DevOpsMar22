@@ -67,6 +67,9 @@ pipeline {
 
         stage ('Push image to Artifactory') {
             steps {
+                sh '''
+                docker tag python:latest devopsmar22.jfrog.io/artifactory/default-docker-local/python:latest
+                '''
                 rtDockerPush(
                     serverId: "artifactory-project",
                     image: 'devopsmar22.jfrog.io/artifactory/default-docker-local/python:latest',
