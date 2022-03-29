@@ -27,7 +27,7 @@ pipeline {
             }
             post {
                  always {
-                     jiraSendDeploymentInfo site: 'exit-zero.atlassian.net', environmentId: 'east-us-1', environmentName: 'eastus', environmentType: 'productoin'
+                     jiraSendDeploymentInfo site: 'exit-zero.atlassian.net', environmentId: 'east-us-1', environmentName: 'eastus', environmentType: 'production'
                  }
              }
         }
