@@ -72,7 +72,7 @@ pipeline {
                 '''
                 rtDockerPush(
                     serverId: "artifactory-project",
-                    image: 'devopsmar22.jfrog.io/artifactory/default-docker-local/python:3.8.12-slim-buster',
+                    image: 'python:3.8.12-slim-buster',
                     targetRepo: 'default-docker-local',
                     properties: 'project-name=docker1;status=stable'
                 )
