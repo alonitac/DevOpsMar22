@@ -24,7 +24,7 @@ pipeline {
         stage ('Pip install') {
             steps {
                 rtPipInstall (
-                    resolverId: "PIP_RESOLVER"
+                    resolverId: "pip-resolver"
                     args: "-r python-example/requirements.txt"
                 )
             }
@@ -33,7 +33,7 @@ pipeline {
         stage ('Package and create distribution archives') {
             steps {
                 sh '''
-                    cd python-example
+                    cd package_demo
                     python setup.py sdist bdist_wheel
                 '''
             }
@@ -42,7 +42,7 @@ pipeline {
         stage ('Upload packages') {
             steps {
                 rtUpload (
-                    serverId: "ARTIFACTORY_SERVER",
+                    serverId: "artifactory-project",
                     spec: '''{
                         "files": [
                             {
@@ -58,7 +58,7 @@ pipeline {
         stage ('Publish build info') {
             steps {
                 rtPublishBuildInfo (
-                    serverId: "ARTIFACTORY_SERVER"
+                    serverId: "artifactory-project"
                 )
             }
         }
