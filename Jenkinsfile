@@ -56,7 +56,7 @@ pipeline {
                     spec: '''{
                         "files": [
                             {
-                                "pattern": "python-example/dist/",
+                                "pattern": "package_demo/dist/",
                                 "target": "pypi-virtual/"
                             }
                         ]
