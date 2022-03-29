@@ -69,7 +69,7 @@ pipeline {
             steps {
                 rtDockerPush(
                     serverId: "artifactory-project",
-                    image: 'python:latest',
+                    image: 'https://devopsmar22.jfrog.io/artifactory/default-docker-local/python:latest',
                     targetRepo: 'docker-local',
                     // Attach custom properties to the published artifacts:
                     properties: 'project-name=docker1;status=stable'
