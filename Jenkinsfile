@@ -11,31 +11,53 @@ pipeline {
                     credentialsId: 'jfrog-jenkins'
                 )
 
-//                 rtPipResolver (
-//                     id: "PIP_RESOLVER",
-//                     serverId: "ARTIFACTORY_SERVER",
-//                     repo: "pypi-virtual"
-//                 )
+                rtPipResolver (
+                    id: "pip-resolver",
+                    serverId: "artifactory-project",
+                    repo: "pypi-virtual"
+                )
             }
         }
 
-        stage('Build') {
+        stage ('Pip install') {
             steps {
-                echo 'building...'
+                rtPipInstall (
+                    resolverId: "PIP_RESOLVER"
+                    args: "-r python-example/requirements.txt"
+                )
             }
         }
-        stage('Test') {
-            when { changeRequest() }
+
+        stage ('Package and create distribution archives') {
             steps {
                 sh '''
-                pip install -r simple_webserver/requirements.txt
-                PYTHONPATH=. python3 -m pytest --junitxml results.xml simple_webserver/tests
+                    cd python-example
+                    python setup.py sdist bdist_wheel
                 '''
             }
         }
-        stage('Deploy') {
+
+        stage ('Upload packages') {
             steps {
-                echo 'deploying...'
+                rtUpload (
+                    serverId: "ARTIFACTORY_SERVER",
+                    spec: '''{
+                        "files": [
+                            {
+                                "pattern": "python-example/dist/",
+                                "target": "pypi-virtual/"
+                            }
+                        ]
+                    }'''
+                )
+            }
+        }
+
+        stage ('Publish build info') {
+            steps {
+                rtPublishBuildInfo (
+                    serverId: "ARTIFACTORY_SERVER"
+                )
             }
         }
     }
