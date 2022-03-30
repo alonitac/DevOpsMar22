@@ -31,7 +31,15 @@ pipeline {
         }
 
         stage('Build') {
+            environment {
+                JFROG_AR_TOKEN = credentials('jfrog-artifactory')
+            }
             steps {
+                sh '''
+                cd simple_webserver
+                echo "[global]
+                index-url = https://jenkins:$JFROG_AR_TOKEN@devopsmar22.jfrog.io/artifactory/api/pypi/dependecies-pypi/simple" > pip.conf
+                '''
                 echo 'building...'
                 rtPipInstall (
                     resolverId: "pip-default",
