@@ -33,6 +33,10 @@ pipeline {
         stage('Build') {
             steps {
                 echo 'building...'
+                rtPipInstall (
+                    resolverId: "pip-default",
+                    args: "-r simple_webserver/requirements.txt"
+                )
             }
         }
         stage('Test') {
