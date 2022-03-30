@@ -53,5 +53,14 @@ pipeline {
                 echo 'deploying...'
             }
         }
+         stage ('Package and create distribution archives') {
+            steps {
+                sh '''
+                    cd package_demo
+                    pip install wheel
+                    python setup.py sdist bdist_wheel
+                '''
+            }
+        }
     }
 }
