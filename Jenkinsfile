@@ -62,5 +62,20 @@ pipeline {
                 '''
             }
         }
+         stage ('Package publish') {
+            steps {
+                rtUpload (
+                    serverId: 'artifactory-default',
+                    spec: '''{
+                      "files": [
+                        {
+                          "pattern": "package_demo/",
+                          "target": "fantastic-ascii-2-pypi/"
+                        }
+                     ]
+                    }'''
+                )
+            }
+        }
     }
 }
