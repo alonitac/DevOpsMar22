@@ -69,7 +69,7 @@ pipeline {
                     spec: '''{
                       "files": [
                         {
-                          "pattern": "package_demo/",
+                          "pattern": "package_demo/dist",
                           "target": "fantastic-ascii-2-pypi/"
                         }
                      ]
